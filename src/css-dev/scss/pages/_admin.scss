@@ -1,0 +1,309 @@
+/**admin**/
+
+//head-logo
+.head-logo{
+    padding: 10px;
+	 line-height: 40px;
+    background: $bg-head;
+    
+    .logo{     
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+		vertical-align: middle;
+    }
+	a{
+		display: inline-block;
+		vertical-align: middle;
+	}
+    h4{
+		display: inline-block;
+        padding: 0 ;
+        margin: 0 0 0 10px; 
+        font-size: 18px;
+        font-weight: 200;
+      
+        color:$text-white;
+    }
+    
+    // right
+    .pull-right{
+        position: relative;
+        margin-right: 3%;
+    }
+    .head-img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    
+    margin-right: 20px;
+    border-radius: 50%; 
+    vertical-align: middle;
+    
+    }
+    
+    .iconfont{
+        position: relative;
+        font-size: 32px;
+        color:$text-white;
+        &:hover{
+            cursor: pointer;
+        }
+        
+        &+.iconfont{
+            margin-left: 20px;
+        };
+        
+        &.icon-mima{
+            font-size: 36px;
+        }
+    }
+}
+
+// 左边标题
+.admin-left {
+    position: relative;
+    height: 100%;
+    width: 11%;
+    min-width: 200px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.075);
+    .ttl-1 {
+        border: 1px solid $br;
+        border-top: none;
+		margin: 0;
+        height: 44px;
+        line-height: 44px;
+        font-size: 18px;
+        text-align: center;
+    }
+    .box-big {
+        width: 100%;
+        overflow: auto;
+        overflow-x: hidden;
+        border-right: 1px solid $br;
+        height: 400px;
+        // 一级菜单
+        .nemu-1 {
+            margin: 0;
+            padding: 0;
+            > li {
+                padding: 12px;
+                text-align: center;
+                border-bottom: 1px solid $br;
+                transition: all 0.5s;
+                &:hover {
+                    cursor: pointer;
+                }
+                // 图标
+                .iconfont {
+                    margin-right: 5px;
+                    font-size: 24px;
+                    &.icon-yiweizhuanhuan {
+                        font-size: 20px;
+                    }
+                }
+                a {
+                    margin-left: 10px;
+                    font-size: 16px;
+                }
+                & + li {
+                    border-top: none;
+                }
+                &.active {
+                    background: $bg-head;
+                    span {
+                        color: $text-white;
+                    }
+                    > a {
+                        color: $text-white !important;
+                    }
+                }
+            }
+        }
+        // 二级菜单
+        .nemu-2 {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            z-index: 2;
+            display: none;
+            width: 180px;
+            margin: 0;
+            padding: 10px 0;
+            min-height: 100px;
+            background: $text-white;
+            box-shadow: 2px 2px 5px #999, 2px -2px 5px #ccc;
+            li {
+                > a {
+                    display: block;
+                    width: 100%;
+                    margin: 0;
+                    padding: 10px 25px;
+                    color: $text-ash;
+                    font-size: 14px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    transition: all 0.4s;
+                    text-align: left;
+                    &:hover {
+                        background: #f0f0f0;
+                    }
+                }
+                &.active > a {
+                    background: lighten($bg-head, 10%);
+                    color: $text-white;
+                }
+            }
+        }
+    }
+}
+
+// 兼容 ie8
+.no-rgba {
+    .nemu-2 {
+        border: 1px solid #ddd;
+    }
+}
+
+// 右边内容
+.admin-right {
+    position: relative;
+    overflow: hidden;
+    //ttl wrap
+    .wrap-ttl {
+        position: relative;
+        margin-right: 50px;
+        overflow: hidden;
+        box-shadow:  0 2px 4px rgba(0, 0, 0, 0.075) inset,-4px -2px 4px rgba(0, 0, 0, 0.075) inset;
+       
+    }
+    // 左右键移动btn
+    .warp-left-btn,
+    .warp-right-btn {
+        position: absolute;
+        z-index: 99;
+        top: 5px;
+        display: none;
+        padding: 10px 3px;
+        color: #fff;
+        background: #333;
+        background: rgba(#333, 0.5);
+        cursor: pointer;
+        outline: none;
+
+        &:hover {
+            background: rgba(#333, 0.9);
+            color: #fff;
+        }
+    }
+    .warp-left-btn {
+        left: 1px;
+    }
+
+    .warp-right-btn {
+        right: 1px;
+    }
+
+    ul.ttl-1 {
+        position: relative;
+        z-index: 1;
+        height: 43px;
+        left: 0;
+        float: left;
+        white-space: nowrap;
+        //  border-bottom: 1px solid $br;
+        li {
+            position: relative;
+            display: inline-block;
+            float: none;
+            height: 43px;
+            line-height: 43px;
+            padding: 0 30px 0 20px;
+            border-right: 1px solid #e2e2e2;
+            font-size: 14px;
+            &:hover {
+                cursor: pointer;
+            }
+            .close {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+				transform: translateY(-50%);
+                color: #333;
+				font-weight: 200;
+                &:hover {
+                    color: red;
+                }
+            }
+            &.active {
+                color: $text-primary;
+                font-weight: 600;
+            }
+
+            &:first-child {
+                border-left: 1px solid $br;
+            }
+        }
+    }
+
+    //  btn-refresh
+    .btn-refresh {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 9;
+        margin: 0;
+        color: #666;
+        border: none;
+        background: #f8f8f8;
+        outline: none;
+        &:hover {
+            color: $text-blue;
+        }
+    }
+    // iframe
+    .iframe-big {
+        width: 100%;
+        border-top: 1px solid $br;
+        overflow: hidden;
+    }
+    // iframe-boox
+    .iframe-box {
+        position: relative;
+        display: none;
+        border: none;
+        width: 100% !important;
+        overflow: scroll;
+        &.active {
+            display: block;
+            animation: showIframe 0.5s linear both;
+        }
+    }
+    @keyframes showIframe {
+        0% {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+}
+
+/**footer**/
+    .footer{
+        
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color:$text-white;
+        background: $bg-head;
+        
+        .cont{
+            padding: 10px;
+           text-align: center;
+        }
+    }

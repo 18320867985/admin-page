@@ -1,0 +1,47 @@
+
+/*设计图width*/
+$screenwidth:375;
+
+/*rem 份数*/
+$remSize:18.75;
+
+/* 375/18.75 =20px=1rem */
+
+/*html rem比例*/
+//$rem:($screenwidth/$remSize);
+
+$rem:20;
+
+$text-primary: darken(#428bca, 6.5%) !default; // #337ab7
+$text-success: #5cb85c !default;
+$text-info: #5bc0de !default;
+$text-warning: #f0ad4e !default;
+$text-danger: #d9534f !default;
+$text-muted:#777;
+$text-placeholder:#999;
+
+$font-family:"Helvetica Neue",
+Helvetica,
+sans-serif !default;
+
+$font-size:14px !default;
+$font-color:#333;
+$line-height: 1.42858;
+$body-bg:#f8f8f8;
+
+$active-color:#690;
+$active-bg:#690;
+$a-color:darken($text-primary, 10%);
+
+$bg-head:rgb(61,111,174);
+$text-white:#fff;
+$br:#e1e1e1;
+
+$text-df:#323232;
+$text-ash:$text-df;
+$text-blue:$bg-head;
+$bg-f8:#f8f8f8;
+
+
+
+

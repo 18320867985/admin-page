@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/*设计图width*/
+/*rem 份数*/
+/* 375/18.75 =20px=1rem */
+/*html rem比例*/
+.index {
+  font-size: 60px; }
+  .index .a {
+    color: #286090;
+    font-size: 40px; }
