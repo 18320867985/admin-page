@@ -142,17 +142,34 @@ var index = {
 
 		// 菜单hover show  左右的按钮
 		$(".admin-right .wrap-ttl  .ttl-1").mouseenter(function () {
+			showLeftRightBtn();
+		});
+
+		function showLeftRightBtn() {
 
 			// 设置菜单wrap-ttl 包裹器width
 			var wrap_w = $(".admin-right .wrap-ttl ").width();
 
 			// 设置菜单wrap-ttl 包裹器width
 			var wrap_ul = $(".admin-right .wrap-ttl ul ").width();
-
-			if (wrap_ul > wrap_w) {
-				$(".admin-right .warp-left-btn,.admin-right .warp-right-btn").show();
+			var wrap_ul_left = $(".admin-right .wrap-ttl ul").position().left;
+			console.log("wrap_ul_left", wrap_ul_left);
+			if (wrap_ul_left < 0) {
+				$(".admin-right .warp-left-btn").show();
+			} else {
+				$(".admin-right .warp-left-btn").hide();
 			}
-		});
+
+			if (wrap_ul_left > -(wrap_ul - wrap_w) && wrap_ul > wrap_w) {
+				$(".admin-right .warp-right-btn").show();
+			} else {
+				$(".admin-right .warp-right-btn").hide();
+			}
+
+			if (wrap_ul < wrap_w) {
+				$(".admin-right .warp-left-btn,.admin-right .warp-right-btn").hide();
+			}
+		}
 
 		$(".admin-right .wrap-ttl").mouseleave(function () {
 
@@ -186,7 +203,7 @@ var index = {
 							"left": "-=" + 100
 						});
 					}
-
+					showLeftRightBtn();
 					//		
 				}, 500);
 			}
@@ -220,7 +237,7 @@ var index = {
 							"left": "+=" + 100
 						});
 					}
-
+					showLeftRightBtn();
 					//		
 				}, 500);
 			}
@@ -228,14 +245,6 @@ var index = {
 
 			clearInterval(wrarp_left_btn_id);
 		});
-
-		// 二级菜单
-		//		$(".admin-left .nemu-2 li a").on("click", function(e) {
-		//			e.preventDefault();
-		//			$(".admin-left .nemu-2  li").removeClass("active");
-		//			$(this).closest("li").addClass("active");
-		//			
-		//		});
 
 		// 添加二级菜集合项 
 		var srcLists = [];
@@ -320,6 +329,7 @@ var index = {
 
 			// 设置菜单大与wrap时的位置
 			setMenuLeft(_index);
+			showLeftRightBtn();
 			return false;
 		});
 

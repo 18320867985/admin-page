@@ -781,7 +781,8 @@ textarea::-moz-placeholder {
   width: 11%;
   min-width: 200px;
   -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.075);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.075); }
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.075);
+  background: #fff; }
   .admin-left .ttl-1 {
     border: 1px solid #e1e1e1;
     border-top: none;
@@ -863,10 +864,10 @@ textarea::-moz-placeholder {
   overflow: hidden; }
   .admin-right .wrap-ttl {
     position: relative;
-    margin-right: 50px;
     overflow: hidden;
-    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075) inset, -4px -2px 4px rgba(0, 0, 0, 0.075) inset;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.075) inset, -4px -2px 4px rgba(0, 0, 0, 0.075) inset; }
+    background: #fff;
+    -webkit-box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1); }
   .admin-right .warp-left-btn,
   .admin-right .warp-right-btn {
     position: absolute;
@@ -901,7 +902,7 @@ textarea::-moz-placeholder {
       height: 43px;
       line-height: 43px;
       padding: 0 30px 0 20px;
-      border-right: 1px solid #e2e2e2;
+      border-right: 1px solid #f2f2f2;
       font-size: 14px; }
       .admin-right ul.ttl-1 li:hover {
         cursor: pointer; }
@@ -918,20 +919,37 @@ textarea::-moz-placeholder {
       .admin-right ul.ttl-1 li.active {
         color: #337ab7;
         font-weight: 600; }
-      .admin-right ul.ttl-1 li:first-child {
-        border-left: 1px solid #e1e1e1; }
-  .admin-right .btn-refresh {
+  .admin-right .admin-right-refresh {
     position: absolute;
-    right: 10px;
-    top: 10px;
-    z-index: 9;
-    margin: 0;
-    color: #666;
-    border: none;
-    background: #f8f8f8;
-    outline: none; }
-    .admin-right .btn-refresh:hover {
-      color: #3d6fae; }
+    height: 43px;
+    width: 50px;
+    right: 0px;
+    top: 0;
+    z-index: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background: #fff;
+    -webkit-box-shadow: -4px 0 10px rgba(0, 0, 0, 0.075);
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.075); }
+    .admin-right .admin-right-refresh:hover {
+      cursor: pointer; }
+      .admin-right .admin-right-refresh:hover span {
+        color: #337ab7;
+        -webkit-transform: rotate(360deg) scale(1.4);
+                transform: rotate(360deg) scale(1.4); }
+    .admin-right .admin-right-refresh span {
+      position: relative;
+      display: inline-block;
+      color: #333;
+      -webkit-transition: .4s ease;
+      transition: .4s ease; }
   .admin-right .iframe-big {
     width: 100%;
     border-top: 1px solid #e1e1e1;

@@ -67,6 +67,7 @@
     width: 11%;
     min-width: 200px;
     box-shadow: 0 4px 10px rgba(0,0,0,.075);
+	background: #fff;
     .ttl-1 {
         border: 1px solid $br;
         border-top: none;
@@ -173,10 +174,9 @@
     //ttl wrap
     .wrap-ttl {
         position: relative;
-        margin-right: 50px;
         overflow: hidden;
-        box-shadow:  0 2px 4px rgba(0, 0, 0, 0.075) inset,-4px -2px 4px rgba(0, 0, 0, 0.075) inset;
-       
+		background: #fff;    
+		box-shadow: 4px 0 10px rgba(0,0,0,.1);
     }
     // 左右键移动btn
     .warp-left-btn,
@@ -220,7 +220,7 @@
             height: 43px;
             line-height: 43px;
             padding: 0 30px 0 20px;
-            border-right: 1px solid #e2e2e2;
+            border-right: 1px solid #f2f2f2;
             font-size: 14px;
             &:hover {
                 cursor: pointer;
@@ -240,28 +240,40 @@
                 color: $text-primary;
                 font-weight: 600;
             }
-
-            &:first-child {
-                border-left: 1px solid $br;
-            }
         }
     }
 
     //  btn-refresh
-    .btn-refresh {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        z-index: 9;
-        margin: 0;
-        color: #666;
-        border: none;
-        background: #f8f8f8;
-        outline: none;
-        &:hover {
-            color: $text-blue;
-        }
-    }
+	.admin-right-refresh{
+		position: absolute;
+		height: 43px;
+		width: 50px;
+		right: 0px;
+		top: 0;
+		z-index: 2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: #fff;
+		box-shadow: -4px 0 10px rgba(0,0,0,.075);	
+		
+		&:hover{	
+			cursor: pointer;
+			span{
+				color:$text-primary;
+				transform: rotate(360deg) scale(1.4);		
+				}
+		}
+	
+		span{
+			position: relative;
+			display: inline-block;
+			color:#333;
+			transition: .4s ease;
+			
+		}
+	}
+  
     // iframe
     .iframe-big {
         width: 100%;
