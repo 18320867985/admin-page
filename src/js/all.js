@@ -91,15 +91,7 @@ var index = {
 
 		$(window).resize(function () {
 			setMenuHeight();
-			var wrap_w = $(".admin-right .wrap-ttl").width();
-			var move_left = $(".admin-right .ttl-1 li.active").position().left + $(".admin-right .ttl-1 li.active").outerWidth();
-			var _left = 0;
-			if (move_left > wrap_w) {
-				_left = -(move_left - wrap_w);
-			}
-			$(".admin-right .wrap-ttl ul ").stop().animate({
-				"left": _left
-			}, 400);
+			setMenuLeft();
 		});
 
 		function setMenuHeight() {
@@ -120,7 +112,6 @@ var index = {
 			$(".admin-left .nemu-1>li").removeClass("active");
 			$(this).addClass("active");
 			var _top = $(this).position().top; // 当前项的top
-			//	alert(_top)
 			var _nemu2 = $(this).find(".nemu-2");
 			_nemu2.show();
 
@@ -130,7 +121,6 @@ var index = {
 			var w_ttl_1 = $(".admin-left .ttl-1").outerHeight();
 			var w_footer = $(".footer").outerHeight();
 			var ul_h = w_big - w_head - w_footer - w_ttl_1; //大框高度
-
 			var menu2_h = _nemu2.outerHeight(); // 子菜单高度
 			var _top2 = $(this).offset().top - w_head - w_ttl_1; // 当前项的top
 			if (_top2 + menu2_h > ul_h) {
@@ -162,7 +152,7 @@ var index = {
 			// 设置菜单wrap-ttl 包裹器width
 			var wrap_ul = $(".admin-right .wrap-ttl ul ").width();
 			var wrap_ul_left = $(".admin-right .wrap-ttl ul").position().left;
-			console.log("wrap_ul_left", wrap_ul_left);
+			//console.log("wrap_ul_left",wrap_ul_left)
 			if (wrap_ul_left < 0) {
 				$(".admin-right .warp-left-btn").show();
 			} else {
@@ -205,27 +195,43 @@ var index = {
 
 					if (val + move_left_val >= slide_left) {
 						clearInterval(wrarp_right_btn_id);
-						$(".admin-right .wrap-ttl ul ").animate({
+						$(".admin-right .wrap-ttl ul ").stop().animate({
 							"left": "-" + slide_left
 						});
 						setTimeout(function () {
 							showLeftRightBtn();
 						}, _time);
 					} else {
-						$(".admin-right .wrap-ttl ul ").animate({
+						$(".admin-right .wrap-ttl ul ").stop().animate({
 							"left": "-=" + move_left_val
 						});
 					}
-
-					//		
 				}, _time);
 			}
 		}, function () {
 
 			clearInterval(wrarp_right_btn_id);
 		});
+		//菜单右btn移动
+		$(".admin-right .warp-right-btn").click(function () {
+			var _this = this;
 
-		//菜单做btn移动
+			clearInterval(wrarp_right_btn_id);
+			// 设置菜单wrap-ttl 包裹器width
+			var wrap_w = Number($(".admin-right .wrap-ttl ").width());
+
+			// 设置菜单wrap-ttl 包裹器width
+			var wrap_ul = Number($(".admin-right .wrap-ttl ul ").width());
+			$(".admin-right .wrap-ttl ul ").stop().animate({
+				"left": -(wrap_ul - wrap_w)
+			}, 400);
+
+			setTimeout(function () {
+				$(_this).hide();
+			}, 400);
+		});
+
+		//菜单左btn移动
 		var wrarp_left_btn_id = 0;
 		$(".admin-right .warp-left-btn").hover(function () {
 
@@ -243,7 +249,7 @@ var index = {
 
 					if (val + move_left_val >= 0) {
 						clearInterval(wrarp_left_btn_id);
-						$(".admin-right .wrap-ttl ul ").animate({
+						$(".admin-right .wrap-ttl ul ").stop().animate({
 							"left": 0
 						});
 						setTimeout(function () {
@@ -254,13 +260,24 @@ var index = {
 							"left": "+=" + move_left_val
 						});
 					}
-
-					//		
 				}, _time);
 			}
 		}, function () {
+			clearInterval(wrarp_left_btn_id);
+		});
+
+		//菜单左btn移动
+		$(".admin-right .warp-left-btn").click(function () {
+			var _this2 = this;
 
 			clearInterval(wrarp_left_btn_id);
+			$(".admin-right .wrap-ttl ul ").stop().animate({
+				"left": 0
+			}, 400);
+
+			setTimeout(function () {
+				$(_this2).hide();
+			}, 400);
 		});
 
 		// 添加二级菜集合项 
@@ -282,7 +299,6 @@ var index = {
 
 			// 检查是否有重复项
 			if (checkCF(_href)) {
-
 				return;
 			}
 
@@ -297,33 +313,36 @@ var index = {
 		});
 
 		// 设置菜单大与wrap时的位置
-		function setMenuLeft(index) {
+		function setMenuLeft() {
 
 			// 设置菜单wrap-ttl 包裹器width
 			var wrap_w = Number($(".admin-right .wrap-ttl ").width());
 
 			// 设置菜单wrap-ttl 包裹器width
-			var wrap_ul = 0; //Number( $(".admin-right .wrap-ttl ul ").width());
-			for (var i = 0; i < $(".admin-right .wrap-ttl ul li").length; i++) {
-				var el = $(".admin-right .wrap-ttl ul li").eq(i);
-				//if(i<=index){
-				var w = el.outerWidth();
-				wrap_ul += Number(w);
-				if (el.hasClass("active")) {
-					break;
-				}
-				//}
-			}
+			var wrap_ul = $(".admin-right .wrap-ttl ul ").width();
+			var offset_left = $(".admin-right .wrap-ttl ul li.active").position().left;
+			var _center = wrap_w / 2 - $(".admin-right .wrap-ttl ul li.active").outerWidth() / 2;
+			var _time = 400;
 
 			if (wrap_ul >= wrap_w) {
-				var _left = wrap_ul - wrap_w;
-				$(".admin-right .wrap-ttl ul ").animate({
-					"left": "-" + _left
-				}, 400);
+				var _space = wrap_ul - wrap_w;
+				var _left = offset_left - _center;
+				if (_left < _space) {
+					_left = _left < 0 ? 0 : _left;
+					$(".admin-right .wrap-ttl ul ").stop().animate({
+						"left": "-" + _left
+					}, _time);
+				} else {
+
+					$(".admin-right .wrap-ttl ul ").stop().animate({
+						"left": "-" + _space
+					}, _time);
+				}
 			} else {
-				$(".admin-right .wrap-ttl ul ").animate({
+
+				$(".admin-right .wrap-ttl ul ").stop().animate({
 					"left": 0
-				}, 400);
+				}, _time);
 			}
 		}
 
@@ -352,7 +371,6 @@ var index = {
 
 		// 点击 li 
 		$(".admin-right .ttl-1 ").on("click", "li", function () {
-
 			var $this = this;
 			var _index = $(".admin-right .ttl-1 li").index($this);
 			addmenu(_index);
@@ -365,29 +383,21 @@ var index = {
 			var $ul = $(".admin-right .ttl-1");
 			//	<li>产品档案 <span class="close">&times;</span></li>
 			$ul = $(".admin-right .ttl-1").empty();
-
 			for (var i in srcLists) {
-
 				var li = document.createElement("li");
-
 				if (i == index) {
 					$(li).addClass("active");
-					//$(iframe).addClass("active");
 				}
 				var span = document.createElement("span");
 				// span.classList.add("txt");  // ie9
 				$(span).addClass("txt");
 				span.innerText = srcLists[i].text;
 				var span2 = document.createElement("span");
-				// span2.classList.add("close"); // ie9
 				$(span2).addClass("close");
 				span2.innerHTML = "&times;";
 				li.appendChild(span);
 				li.appendChild(span2);
 				$ul.append(li);
-
-				// iframe item
-				//$iframe_big.append(iframe);
 			}
 
 			// 设置菜单大与wrap时的位置
@@ -410,24 +420,20 @@ var index = {
 
 		function addIframe(obj) {
 			$(".admin-right .iframe-big .iframe-box").removeClass("active");
-
 			var $iframe_big = $(".admin-right .iframe-big");
 			var iframe = document.createElement("iframe");
 			$(iframe).addClass("iframe-box");
 			$(iframe).attr("src", obj.href);
 			$iframe_big.append(iframe);
 			$(iframe).addClass("active ");
-
 			setMenuHeight();
 		}
 
 		function delIframe(index) {
-
 			$(".admin-right .iframe-big .iframe-box").eq(index).remove();
 		}
 
 		function showIframe(index) {
-
 			$(".admin-right .iframe-big .iframe-box").removeClass("active  ");
 			$(".admin-right .iframe-big .iframe-box").eq(index).addClass("active");
 		}
