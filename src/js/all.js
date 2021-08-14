@@ -91,6 +91,15 @@ var index = {
 
 		$(window).resize(function () {
 			setMenuHeight();
+			var wrap_w = $(".admin-right .wrap-ttl").width();
+			var move_left = $(".admin-right .ttl-1 li.active").position().left + $(".admin-right .ttl-1 li.active").outerWidth();
+			var _left = 0;
+			if (move_left > wrap_w) {
+				_left = -(move_left - wrap_w);
+			}
+			$(".admin-right .wrap-ttl ul ").stop().animate({
+				"left": _left
+			}, 400);
 		});
 
 		function setMenuHeight() {
@@ -187,25 +196,29 @@ var index = {
 			var wrap_ul = Number($(".admin-right .wrap-ttl ul ").width());
 
 			if (wrap_ul > wrap_w) {
-
+				var move_left_val = 100;
+				var _time = 500;
 				wrarp_right_btn_id = setInterval(function () {
 					var slide_left = wrap_ul - wrap_w;
 					var val = Number($(".admin-right .wrap-ttl .ttl-1").position().left);
 					val = Math.abs(val);
 
-					if (val >= slide_left) {
+					if (val + move_left_val >= slide_left) {
 						clearInterval(wrarp_right_btn_id);
 						$(".admin-right .wrap-ttl ul ").animate({
 							"left": "-" + slide_left
 						});
+						setTimeout(function () {
+							showLeftRightBtn();
+						}, _time);
 					} else {
 						$(".admin-right .wrap-ttl ul ").animate({
-							"left": "-=" + 100
+							"left": "-=" + move_left_val
 						});
 					}
-					showLeftRightBtn();
+
 					//		
-				}, 500);
+				}, _time);
 			}
 		}, function () {
 
@@ -223,23 +236,27 @@ var index = {
 			var wrap_ul = Number($(".admin-right .wrap-ttl ul ").width());
 
 			if (wrap_ul > wrap_w) {
-
+				var move_left_val = 100;
+				var _time = 500;
 				wrarp_left_btn_id = setInterval(function () {
 					var val = Number($(".admin-right .wrap-ttl .ttl-1").position().left);
 
-					if (val >= 0) {
+					if (val + move_left_val >= 0) {
 						clearInterval(wrarp_left_btn_id);
 						$(".admin-right .wrap-ttl ul ").animate({
 							"left": 0
 						});
+						setTimeout(function () {
+							showLeftRightBtn();
+						}, _time);
 					} else {
 						$(".admin-right .wrap-ttl ul ").animate({
-							"left": "+=" + 100
+							"left": "+=" + move_left_val
 						});
 					}
-					showLeftRightBtn();
+
 					//		
-				}, 500);
+				}, _time);
 			}
 		}, function () {
 

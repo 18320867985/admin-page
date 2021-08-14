@@ -801,7 +801,7 @@ textarea::-moz-placeholder {
       margin: 0;
       padding: 0; }
       .admin-left .box-big .nemu-1 > li {
-        padding: 12px;
+        padding: 10px;
         text-align: center;
         border-bottom: 1px solid #e1e1e1;
         -webkit-transition: all 0.5s;
